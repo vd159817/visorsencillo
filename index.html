@@ -175,11 +175,46 @@
       mix-blend-mode: multiply;
     }
     body[data-theme="coffee-parchment"] .pdf-page-wrapper {
+      position: relative;
       background-color: #C8AD7F;
       background-image:
-        radial-gradient(ellipse at 20% 25%, rgba(255, 245, 224, 0.28) 0%, transparent 55%),
-        radial-gradient(ellipse at 80% 75%, rgba(92, 70, 38, 0.16) 0%, transparent 60%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.35 0 0 0 0.45  0 0.28 0 0 0.30  0 0 0.18 0 0.15  0 0 0 0.14 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)'/%3E%3C/svg%3E");
+        radial-gradient(ellipse at 20% 25%, rgba(255, 245, 224, 0.30) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 75%, rgba(92, 70, 38, 0.22) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='300'%20height='300'%3E%3Cfilter%20id='f'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.012%200.55'%20numOctaves='3'%20seed='7'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='matrix'%20values='0.30%200%200%200%200.35%20%200%200.22%200%200%200.22%20%200%200%200.12%200%200.10%20%200%200%200%200.20%200'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url%28%23f%29'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='220'%20height='220'%3E%3Cfilter%20id='p'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.8'%20numOctaves='4'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='matrix'%20values='0.35%200%200%200%200.40%20%200%200.28%200%200%200.27%20%200%200%200.18%200%200.13%20%200%200%200%200.26%200'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url%28%23p%29'/%3E%3C/svg%3E");
+    }
+    body[data-theme="coffee-parchment"] .pdf-page-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 60px rgba(70, 45, 15, 0.38);
+    }
+
+    /* 2c. Papel Crema (marfil de libro) con fibras y grano suaves */
+    body[data-theme="cream-paper"] {
+      --bg-app: #15130f;
+    }
+    body[data-theme="cream-paper"] .pdf-canvas,
+    body[data-theme="cream-paper"] .epub-page-content {
+      filter: sepia(0.22) brightness(0.96) contrast(1.1);
+      mix-blend-mode: multiply;
+    }
+    body[data-theme="cream-paper"] .pdf-page-wrapper {
+      position: relative;
+      background-color: #F4ECD8;
+      background-image:
+        radial-gradient(ellipse at 15% 20%, rgba(255, 252, 240, 0.55) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 80%, rgba(150, 115, 60, 0.14) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='320'%20height='320'%3E%3Cfilter%20id='f'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.02%200.5'%20numOctaves='2'%20seed='3'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='matrix'%20values='0.30%200%200%200%200.40%20%200%200.24%200%200%200.30%20%200%200%200.14%200%200.16%20%200%200%200%200.12%200'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url%28%23f%29'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='200'%20height='200'%3E%3Cfilter%20id='p'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.9'%20numOctaves='3'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='matrix'%20values='0.30%200%200%200%200.45%20%200%200.25%200%200%200.35%20%200%200%200.15%200%200.20%20%200%200%200%200.17%200'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url%28%23p%29'/%3E%3C/svg%3E");
+    }
+    body[data-theme="cream-paper"] .pdf-page-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 46px rgba(120, 90, 40, 0.24);
     }
 
     /* 2b. Blanco y Negro (papel blanco, texto negro puro, sin color) */
@@ -316,7 +351,8 @@
 
     body[data-theme="white"] .highlight-rect,
     body[data-theme="bw"] .highlight-rect,
-    body[data-theme="coffee-parchment"] .highlight-rect {
+    body[data-theme="coffee-parchment"] .highlight-rect,
+    body[data-theme="cream-paper"] .highlight-rect {
       mix-blend-mode: multiply;
       opacity: 0.72 !important;
     }
@@ -486,8 +522,10 @@
       font-family: 'JetBrains Mono', monospace;
       color: rgba(229, 231, 235, 0.75);
       transition: opacity 0.35s ease;
-      pointer-events: none;
+      pointer-events: auto;
+      cursor: pointer;
     }
+    #page-pill:hover { color: #fff; border-color: rgba(56, 189, 248, 0.5); }
 
     #page-pill.hud-hidden {
       opacity: 0.22;
@@ -566,6 +604,72 @@
       user-select: text !important;
       -webkit-user-select: text !important;
     }
+
+    /* ===== Tamaño de interfaz (--ui-zoom: 1 / 1.25 / 1.5) ===== */
+    :root { --ui-zoom: 1.25; }
+    #top-hud { zoom: var(--ui-zoom); max-height: calc(95vh / var(--ui-zoom)); }
+    #page-pill { font-size: calc(11px * var(--ui-zoom)); padding: calc(3px * var(--ui-zoom)) calc(11px * var(--ui-zoom)); }
+
+    #comment-tooltip {
+      font-size: calc(12.5px * var(--ui-zoom));
+      max-width: calc(290px * var(--ui-zoom));
+      min-width: calc(190px * var(--ui-zoom));
+      padding: calc(10px * var(--ui-zoom)) calc(12px * var(--ui-zoom));
+    }
+    #comment-tooltip #tooltip-quote,
+    #comment-tooltip button { font-size: calc(11px * var(--ui-zoom)); }
+    #comment-tooltip span { font-size: calc(10px * var(--ui-zoom)); }
+
+    #comment-modal > div { max-width: min(calc(448px * var(--ui-zoom)), 100%); padding: calc(16px * var(--ui-zoom)); }
+    #comment-modal > div span { font-size: calc(12px * var(--ui-zoom)); }
+    #comment-modal > div span.font-mono { font-size: calc(10px * var(--ui-zoom)); }
+    #comment-modal-quote { font-size: calc(12px * var(--ui-zoom)); }
+    #comment-modal-input { font-size: calc(14px * var(--ui-zoom)); }
+    #comment-modal button { font-size: calc(12px * var(--ui-zoom)); padding: calc(6px * var(--ui-zoom)) calc(14px * var(--ui-zoom)); }
+
+    /* ===== Ir a página / buscar texto ===== */
+    #goto-popup {
+      display: none;
+      position: fixed;
+      left: 16px;
+      bottom: calc(14px + 30px * var(--ui-zoom));
+      width: min(calc(340px * var(--ui-zoom)), calc(100vw - 32px));
+      z-index: 55;
+      background: rgba(20, 22, 27, 0.97);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+      color: #f3f4f6;
+      font-size: calc(12px * var(--ui-zoom));
+    }
+    #goto-popup.open { display: block; }
+    #goto-popup .gp-row { display: flex; gap: 6px; }
+    #goto-input {
+      flex: 1; min-width: 0;
+      background: #101216; color: #f3f4f6;
+      border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 8px;
+      padding: 7px 10px; font-size: calc(13px * var(--ui-zoom)); outline: none;
+    }
+    #goto-input:focus { border-color: #38bdf8; }
+    #goto-go {
+      background: #0ea5e9; color: #09090b; font-weight: 600;
+      border: 0; border-radius: 8px; padding: 0 14px; cursor: pointer; font-size: calc(12px * var(--ui-zoom));
+    }
+    #goto-hint { margin-top: 6px; color: #9ca3af; font-size: calc(10px * var(--ui-zoom)); }
+    #goto-results { margin-top: 6px; max-height: 38vh; overflow-y: auto; }
+    .gp-hit { display: flex; gap: 8px; padding: 6px 6px; border-radius: 6px; cursor: pointer; line-height: 1.35; }
+    .gp-hit:hover { background: rgba(255, 255, 255, 0.08); }
+    .gp-hit b { flex: 0 0 auto; color: #7dd3fc; font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+    .gp-hit span { color: #d1d5db; font-size: calc(11px * var(--ui-zoom)); }
+    .gp-hit mark { background: rgba(250, 204, 21, 0.35); color: #fef9c3; border-radius: 2px; }
+    .gp-status { color: #9ca3af; padding: 4px 6px; font-size: calc(11px * var(--ui-zoom)); }
+
+    /* ===== Progreso en miniaturas de la biblioteca ===== */
+    .lib-prog-text { font-size: 10px; color: #9ca3af; margin-top: 2px; font-family: monospace; }
+    .lib-prog-bar { height: 3px; border-radius: 3px; background: rgba(255,255,255,0.12); margin-top: 3px; overflow: hidden; }
+    .lib-prog-bar > i { display: block; height: 100%; background: #38bdf8; }
   </style>
 </head>
 <body data-theme="black">
@@ -638,10 +742,16 @@
 
     <div class="hud-sep hidden sm:block"></div>
 
-    <!-- 4 Temas de lectura -->
+    <!-- Tamaño de la interfaz (barra, comentarios, selector de página) -->
+    <button id="btn-ui-size" class="hud-btn font-mono text-[11px] px-1.5 py-1" title="Tamaño de la interfaz: Normal / Grande / Extra grande">Aa</button>
+
+    <div class="hud-sep"></div>
+
+    <!-- Temas de lectura -->
     <div class="flex flex-col items-center gap-2" title="Temas de lectura (no alteran el PDF exportado)">
       <button data-set-theme="white" class="theme-dot bg-[#FFFFFF]" title="Tema Blanco"></button>
       <button data-set-theme="coffee-parchment" class="theme-dot bg-[#C8AD7F]" title="Tema Pergamino Café (Textura Papel)"></button>
+      <button data-set-theme="cream-paper" class="theme-dot bg-[#F4ECD8]" title="Tema Papel Crema (Textura Papel)"></button>
       <button data-set-theme="bw" class="theme-dot" style="background: linear-gradient(90deg, #FFFFFF 50%, #000000 50%);" title="Tema Blanco y Negro"></button>
       <button data-set-theme="gray" class="theme-dot bg-[#2B2D30]" title="Tema Gris"></button>
       <button data-set-theme="black" class="theme-dot active bg-[#111111]" title="Tema Negro (Texto Platinado)"></button>
@@ -661,7 +771,16 @@
   </header>
 
   <!-- Indicador de página minimalista -->
-  <div id="page-pill">Sin documento</div>
+  <div id="page-pill" title="Clic o Ctrl+G: ir a una página o buscar texto">Sin documento</div>
+
+  <div id="goto-popup">
+    <div class="gp-row">
+      <input id="goto-input" type="text" placeholder="N.º de página o texto a buscar…" autocomplete="off" spellcheck="false" />
+      <button id="goto-go" type="button">Ir</button>
+    </div>
+    <div id="goto-hint">Número + Enter = ir a esa página · Texto + Enter = buscar · Esc cierra</div>
+    <div id="goto-results"></div>
+  </div>
 
   <!-- Área principal de lectura -->
   <main id="viewport" class="mode-horizontal">
@@ -939,6 +1058,7 @@
        ============================================================================ */
     async function loadPdfFromArrayBuffer(arrayBuffer, fileName) {
       try {
+        state.readingReady = false;
         state.docType = 'pdf';
         state.epubPages = [];
         state.pdfBytes = arrayBuffer.slice(0);
@@ -963,6 +1083,7 @@
         buildPagePlaceholders();
         updatePageIndicator();
         revealHud();
+        restoreReading();
 
         if (restored && (state.annotations.highlights.length || state.annotations.comments.length || state.annotations.freeTexts.length)) {
           showToast('Anotaciones previas restauradas');
@@ -982,6 +1103,7 @@
         return;
       }
       showToast('Procesando libro EPUB...');
+      state.readingReady = false;
       try {
         const zip = await JSZip.loadAsync(arrayBuffer);
 
@@ -1211,6 +1333,7 @@
         buildPagePlaceholders();
         updatePageIndicator();
         revealHud();
+        restoreReading();
 
         showToast(restored && (state.annotations.highlights.length || state.annotations.comments.length || state.annotations.freeTexts.length)
           ? 'EPUB cargado y anotaciones restauradas'
@@ -1322,6 +1445,7 @@
     function updateZoomLabel() {
       const pct = Math.round((state.scale / state.fitScale) * 100);
       zoomLabel.textContent = `${pct}%`;
+      scheduleSaveReading();
     }
 
     let zoomRenderDebounce = null;
@@ -1587,7 +1711,7 @@
         pagePill.textContent = 'Sin documento';
         return;
       }
-      pagePill.textContent = `Pág. ${state.currentPage} / ${state.numPages}`;
+      pagePill.textContent = `Pág. ${state.currentPage} / ${state.numPages}  ⌕`;
     }
 
     viewport.addEventListener('scroll', () => {
@@ -2402,6 +2526,7 @@
 
       computeControlledZoomLimits(true);
       if (state.pdfDoc) buildPagePlaceholders();
+      scheduleSaveReading();
     }
 
     document.getElementById('btn-mode-horizontal').addEventListener('click', () => setLayoutMode('horizontal'));
@@ -2421,6 +2546,7 @@
           }
         });
       }
+      scheduleSaveReading();
       showToast(state.cropMargins ? 'Márgenes sup/inf ocultos y encuadre fijado' : 'Márgenes completos restaurados');
     });
 
@@ -2605,6 +2731,7 @@
           type: isEpub ? 'epub' : 'pdf',
           size: file.size,
           numPages: state.numPages,
+          lastPage: state.currentPage,
           thumb,
           lastOpened: Date.now()
         }, buffer);
@@ -2626,6 +2753,7 @@
         const buf = data.slice(0);
         if (meta.type === 'epub') await loadEpubFromArrayBuffer(buf, meta.name);
         else await loadPdfFromArrayBuffer(buf, meta.name);
+        state.libraryId = id;
         meta.lastOpened = Date.now();
         await libSave(meta, null);
       } catch (e) {
@@ -2675,7 +2803,19 @@
             renderLibrary();
           });
 
-          card.append(thumb, badge, name, del);
+          card.append(thumb, badge, name);
+          if (it.lastPage && it.numPages) {
+            const pt = document.createElement('div');
+            pt.className = 'lib-prog-text';
+            pt.textContent = `Pág. ${it.lastPage} / ${it.numPages}`;
+            const bar = document.createElement('div');
+            bar.className = 'lib-prog-bar';
+            const fill = document.createElement('i');
+            fill.style.width = Math.min(100, Math.round((it.lastPage / it.numPages) * 100)) + '%';
+            bar.appendChild(fill);
+            card.append(pt, bar);
+          }
+          card.append(del);
           card.addEventListener('click', () => openFromLibrary(it.id));
           strip.appendChild(card);
         }
@@ -2714,6 +2854,7 @@
         if (isEpub) await loadEpubFromArrayBuffer(buffer, file.name);
         else await loadPdfFromArrayBuffer(buffer, file.name);
         if (state.pdfDoc && state.pdfDoc !== before) {
+          state.libraryId = libIdFor(file.name, file.size);
           await saveCurrentToLibrary(backup, file);
         }
       };
@@ -2923,6 +3064,247 @@
 
     revealHud();
   
+    /* ============================================================================
+       LECTURA PERSISTENTE: página, zoom, modo de lectura y recorte por documento
+       ============================================================================ */
+    var readingSaveTimer = null;
+
+    function readingKey() {
+      return state.docFingerprint ? 'visor_reading_' + state.docFingerprint : null;
+    }
+
+    function saveReadingNow() {
+      const key = readingKey();
+      if (!key || !state.readingReady || !state.pdfDoc || !state.fitScale) return;
+      try {
+        localStorage.setItem(key, JSON.stringify({
+          page: state.currentPage,
+          zoom: state.scale / state.fitScale,
+          layoutMode: state.layoutMode,
+          cropMargins: state.cropMargins,
+          t: Date.now()
+        }));
+      } catch (_) {}
+      if (state.libraryId) updateLibraryProgress(state.libraryId, state.currentPage, state.numPages);
+    }
+
+    function scheduleSaveReading() {
+      if (!state.readingReady) return;
+      clearTimeout(readingSaveTimer);
+      readingSaveTimer = setTimeout(saveReadingNow, 600);
+    }
+
+    async function updateLibraryProgress(id, page, total) {
+      try {
+        const meta = await libRead('meta', s => s.get(id));
+        if (!meta) return;
+        meta.lastPage = page;
+        meta.numPages = total;
+        await libSave(meta, null);
+      } catch (_) {}
+    }
+
+    function restoreReading() {
+      let saved = null;
+      try { saved = JSON.parse(localStorage.getItem(readingKey()) || 'null'); } catch (_) {}
+      if (!saved) {
+        requestAnimationFrame(() => { state.readingReady = true; });
+        return;
+      }
+      const mode = ['horizontal', 'spread', 'vertical'].includes(saved.layoutMode) ? saved.layoutMode : state.layoutMode;
+      state.layoutMode = mode;
+      viewport.classList.remove('mode-horizontal', 'mode-spread', 'mode-vertical');
+      viewport.classList.add('mode-' + mode);
+      ['horizontal', 'spread', 'vertical'].forEach(m =>
+        document.getElementById('btn-mode-' + m).classList.toggle('active', m === mode));
+
+      state.cropMargins = !!saved.cropMargins;
+      viewport.classList.toggle('crop-margins', state.cropMargins);
+      document.getElementById('btn-crop-margins').classList.toggle('active', state.cropMargins);
+
+      computeControlledZoomLimits(true);
+      const z = Number(saved.zoom) || 1;
+      state.scale = Number(Math.min(state.maxScale, Math.max(state.minScale, z * state.fitScale)).toFixed(3));
+      updateZoomLabel();
+      buildPagePlaceholders();
+
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        goToPage(saved.page || 1, true);
+        setTimeout(() => { renderVisiblePages(); state.readingReady = true; }, 350);
+      }));
+    }
+
+    viewport.addEventListener('scroll', scheduleSaveReading, { passive: true });
+    window.addEventListener('beforeunload', saveReadingNow);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) saveReadingNow(); });
+
+    /* ============================================================================
+       IR A PÁGINA / BUSCAR TEXTO (clic en el indicador o Ctrl+G)
+       ============================================================================ */
+    function goToPage(n, instant = false) {
+      if (!state.pdfDoc || !state.numPages) return;
+      n = Math.min(state.numPages, Math.max(1, Math.round(Number(n) || 1)));
+      const behavior = instant ? 'instant' : 'smooth';
+
+      if (state.layoutMode === 'spread' && state.numPages >= 2) {
+        const l = Math.min(state.numPages - 1, n);
+        const wL = viewport.querySelector(`.pdf-page-wrapper[data-page="${l}"]`);
+        const wR = viewport.querySelector(`.pdf-page-wrapper[data-page="${l + 1}"]`);
+        if (!wL || !wR) return;
+        spreadLeftPage = l;
+        spreadAnimUntil = Date.now() + 700;
+        state.currentPage = l;
+        updatePageIndicator();
+        const pairW = wR.offsetLeft + wR.offsetWidth - wL.offsetLeft;
+        viewport.scrollTo({ left: wL.offsetLeft - Math.max(0, (viewport.clientWidth - pairW) / 2), behavior });
+        return;
+      }
+
+      const wrapper = viewport.querySelector(`.pdf-page-wrapper[data-page="${n}"]`);
+      if (!wrapper) return;
+      state.currentPage = n;
+      updatePageIndicator();
+      if (state.layoutMode === 'vertical') {
+        viewport.scrollTo({ top: wrapper.offsetTop - Math.max(0, (viewport.clientHeight - wrapper.offsetHeight) / 2), behavior });
+      } else {
+        viewport.scrollTo({ left: wrapper.offsetLeft - Math.max(0, (viewport.clientWidth - wrapper.offsetWidth) / 2), behavior });
+      }
+    }
+
+    const gotoPopup = document.getElementById('goto-popup');
+    const gotoInput = document.getElementById('goto-input');
+    const gotoResults = document.getElementById('goto-results');
+    const searchCache = { fp: null, texts: [] };
+    let searchToken = 0;
+
+    function openGoto() {
+      if (!state.pdfDoc) { showToast('Abre un documento primero'); return; }
+      gotoPopup.classList.add('open');
+      gotoInput.focus();
+      gotoInput.select();
+    }
+    function closeGoto() {
+      gotoPopup.classList.remove('open');
+      searchToken++;
+      gotoInput.blur();
+    }
+
+    function normText(t) {
+      return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    async function getPageText(i) {
+      if (searchCache.fp !== state.docFingerprint) { searchCache.fp = state.docFingerprint; searchCache.texts = []; }
+      if (searchCache.texts[i] !== undefined) return searchCache.texts[i];
+      let t = '';
+      try {
+        if (state.docType === 'epub') {
+          t = new DOMParser().parseFromString(state.epubPages[i - 1] || '', 'text/html').body.textContent || '';
+        } else {
+          const page = await state.pdfDoc.getPage(i);
+          const c = await page.getTextContent();
+          t = c.items.map(it => it.str).join(' ');
+        }
+      } catch (_) {}
+      t = t.replace(/\s+/g, ' ').trim();
+      searchCache.texts[i] = t;
+      return t;
+    }
+
+    function addHit(page, text, idx, qLen) {
+      const row = document.createElement('div');
+      row.className = 'gp-hit';
+      const b = document.createElement('b');
+      b.textContent = 'p.' + page;
+      const sp = document.createElement('span');
+      const start = Math.max(0, idx - 40);
+      const end = Math.min(text.length, idx + qLen + 60);
+      sp.append(
+        (start > 0 ? '…' : '') + text.slice(start, idx),
+        Object.assign(document.createElement('mark'), { textContent: text.slice(idx, idx + qLen) }),
+        text.slice(idx + qLen, end) + (end < text.length ? '…' : '')
+      );
+      row.append(b, sp);
+      row.addEventListener('click', () => { goToPage(page); closeGoto(); });
+      gotoResults.appendChild(row);
+    }
+
+    async function runSearch(query) {
+      const token = ++searchToken;
+      const q = normText(query);
+      gotoResults.innerHTML = '';
+      const status = document.createElement('div');
+      status.className = 'gp-status';
+      gotoResults.appendChild(status);
+      let hits = 0;
+      for (let i = 1; i <= state.numPages; i++) {
+        if (token !== searchToken) return;
+        if (i % 5 === 1) status.textContent = `Buscando… pág. ${i} de ${state.numPages}`;
+        const text = await getPageText(i);
+        const idx = normText(text).indexOf(q);
+        if (idx >= 0) {
+          hits++;
+          addHit(i, text, idx, query.length);
+          gotoResults.appendChild(status);
+          if (hits >= 60) break;
+        }
+      }
+      if (token !== searchToken) return;
+      status.textContent = hits
+        ? `${hits}${hits >= 60 ? '+' : ''} página(s) con resultados`
+        : 'Sin resultados (si el PDF es escaneado, no tiene texto que buscar)';
+    }
+
+    function submitGoto() {
+      const v = gotoInput.value.trim();
+      if (!v) return;
+      if (/^\d+$/.test(v)) {
+        const n = Number(v);
+        if (n < 1 || n > state.numPages) { showToast(`Escribe un número entre 1 y ${state.numPages}`); return; }
+        goToPage(n);
+        closeGoto();
+      } else {
+        runSearch(v);
+      }
+    }
+
+    pagePill.addEventListener('click', () => gotoPopup.classList.contains('open') ? closeGoto() : openGoto());
+    document.getElementById('goto-go').addEventListener('click', submitGoto);
+    gotoInput.addEventListener('keydown', (e) => {
+      e.stopPropagation();
+      if (e.key === 'Enter') { e.preventDefault(); submitGoto(); }
+      else if (e.key === 'Escape') { closeGoto(); }
+    });
+    document.addEventListener('mousedown', (e) => {
+      if (gotoPopup.classList.contains('open') && !gotoPopup.contains(e.target) && e.target !== pagePill) closeGoto();
+    });
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key.toLowerCase() === 'g') {
+        e.preventDefault();
+        openGoto();
+      }
+    });
+
+    /* ============================================================================
+       TAMAÑO DE INTERFAZ (Normal / Grande / Extra grande), se recuerda
+       ============================================================================ */
+    const UI_SIZES = { normal: { z: 1, label: 'Normal' }, lg: { z: 1.25, label: 'Grande' }, xl: { z: 1.5, label: 'Extra grande' } };
+    const UI_ORDER = ['normal', 'lg', 'xl'];
+    let uiSizeKey = 'lg';
+    try { const k = localStorage.getItem('visor_ui_size'); if (UI_SIZES[k]) uiSizeKey = k; } catch (_) {}
+
+    function applyUiSize(key, announce) {
+      uiSizeKey = key;
+      document.documentElement.style.setProperty('--ui-zoom', String(UI_SIZES[key].z));
+      document.getElementById('btn-ui-size').classList.toggle('active', key !== 'normal');
+      try { localStorage.setItem('visor_ui_size', key); } catch (_) {}
+      if (announce) showToast('Interfaz: ' + UI_SIZES[key].label);
+    }
+    document.getElementById('btn-ui-size').addEventListener('click', () => {
+      applyUiSize(UI_ORDER[(UI_ORDER.indexOf(uiSizeKey) + 1) % UI_ORDER.length], true);
+    });
+    applyUiSize(uiSizeKey, false);
+
     renderLibrary();
   </script>
 </body>
